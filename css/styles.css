@@ -49,9 +49,9 @@ body {
 .front {
     transform: rotateY(180deg);
 }
-.card:hover .front {
+.selected .front {
     transform: rotateY(0deg);
 }
-.card:hover .cover {
+.selected .cover {
     transform: rotateY(-180deg);
 }
