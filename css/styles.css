@@ -25,14 +25,33 @@ body {
 .card {
     height: 146px;
     width: 117px;
+    position: relative;
+    margin: 17px;
+}
+.face {
+    height: 100%;
+    width: 100%;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 17px;
     background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all 1s;
+    transform-style: preserve-3d;
 }
-.card img {
+.face img {
     height: 100px;
     width: 100px;
+}
+.front {
+    transform: rotateY(180deg);
+}
+.card:hover .front {
+    transform: rotateY(0deg);
+}
+.card:hover .cover {
+    transform: rotateY(-180deg);
 }
