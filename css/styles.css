@@ -4,11 +4,24 @@ body {
     display: flex;
     flex-direction: column;
 }
+.time {
+    font-family: roboto;
+    font-size: 24px;
+    color: #75B79E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px auto;
+    padding: 4px 8px;
+    border-radius: 5px;
+    border: 1px solid #99CEA8;
+    background-color: #A7E9AF;
+}
 .title {
     font-family: roboto;
     font-size: 56px;
     text-align: center;
-    margin: 40px auto;
+    margin: 8px auto 40px;
     color: #75B79E;
 }
 @media (max-width: 540px) {

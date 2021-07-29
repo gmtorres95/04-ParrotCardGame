@@ -32,12 +32,18 @@ function cardsDistribution(){
     }
     document.querySelector(".board").innerHTML = cards;
 }
+function clock(){
+    time++;
+    document.querySelector(".time").innerHTML = "TEMPO: " + time;
+}
 function prepareTheGame(){
     const numberOfCards = selectNumberOfCards();
     prepareDeck(numberOfCards);
     deck.sort(shuffle);
     cardsDistribution();
     cardsFlipped = 0;
+    time = 0;
+    timeout = setInterval(clock, 1000);
 }
 function compareCards(){
     if(firstCard.innerHTML === secondCard.innerHTML){
@@ -53,7 +59,8 @@ function checkIfGameOver(){
     const allCards = document.querySelectorAll(".card");
     const flippedCards = document.querySelectorAll(".selected");
     if(allCards.length === flippedCards.length){
-        alert(`Você ganhou em ${cardsFlipped} jogadas!`);
+        clearTimeout(timeout);
+        alert(`Você ganhou em ${cardsFlipped} jogadas (${time} segundos)!`);
     }
 }
 function checkTurn(){
@@ -82,4 +89,6 @@ let firstCard = "";
 let secondCard = "";
 let deck = [];
 let cardsFlipped;
+let time;
+let timeout;
 prepareTheGame();
