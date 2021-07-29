@@ -1,6 +1,3 @@
-function flipCard(selectedCard){
-    selectedCard.classList.toggle("selected");
-}
 function shuffle(){ 
 	return Math.random() - 0.5; 
 }
@@ -12,6 +9,7 @@ function selectNumberOfCards(){
     return numberOfCards;
 }
 function prepareDeck(numberOfCards){
+    deck = [];
     for(index = 0; index < numberOfCards; index++){
         deck.push(`
         <div class="card" onclick="selectCard(this)">
@@ -45,6 +43,9 @@ function prepareTheGame(){
     time = 0;
     timeout = setInterval(clock, 1000);
 }
+function flipCard(selectedCard){
+    selectedCard.classList.toggle("selected");
+}
 function compareCards(){
     if(firstCard.innerHTML === secondCard.innerHTML){
         return true;
@@ -55,12 +56,25 @@ function resetCards(){
     firstCard = "";
     secondCard = "";
 }
+function checkIfPlayAgain(){
+    let wantToPlayAgain;
+    while (wantToPlayAgain !== "sim" && wantToPlayAgain !== "não"){
+        wantToPlayAgain = prompt("Deseja jogar novamente (sim/não)?");
+    }
+    if (wantToPlayAgain === "sim"){
+        prepareTheGame();
+    }
+}
+function gameOver(){
+    alert(`Você ganhou em ${cardsFlipped} jogadas (${time} segundos)!`);
+    checkIfPlayAgain();
+}
 function checkIfGameOver(){
     const allCards = document.querySelectorAll(".card");
     const flippedCards = document.querySelectorAll(".selected");
     if(allCards.length === flippedCards.length){
         clearTimeout(timeout);
-        alert(`Você ganhou em ${cardsFlipped} jogadas (${time} segundos)!`);
+        setTimeout(gameOver, 1000);
     }
 }
 function checkTurn(){
@@ -70,7 +84,7 @@ function checkTurn(){
         setTimeout(flipCard, 1000, secondCard);
     }
     resetCards();
-    setTimeout(checkIfGameOver, 1000);
+    checkIfGameOver();
 }
 function selectCard(selectedCard){
     if(selectedCard.classList.contains("selected") === false){
@@ -87,7 +101,7 @@ function selectCard(selectedCard){
 }
 let firstCard = "";
 let secondCard = "";
-let deck = [];
+let deck;
 let cardsFlipped;
 let time;
 let timeout;
