@@ -39,6 +39,7 @@ function prepareTheGame(){
     prepareDeck(numberOfCards);
     deck.sort(shuffle);
     cardsDistribution();
+    correctGuesses = 0;
     cardsFlipped = 0;
     time = 0;
     timeout = setInterval(clock, 1000);
@@ -68,8 +69,7 @@ function gameOver(){
 }
 function checkIfGameOver(){
     const allCards = document.querySelectorAll(".card");
-    const flippedCards = document.querySelectorAll(".selected");
-    if(allCards.length === flippedCards.length){
+    if((allCards.length / 2 ) === correctGuesses){
         clearTimeout(timeout);
         setTimeout(gameOver, 1000);
     }
@@ -79,6 +79,9 @@ function checkTurn(){
     if(isThePlayerRight === false){
         setTimeout(flipCard, 1000, firstCard);
         setTimeout(flipCard, 1000, secondCard);
+    }
+    else {
+        correctGuesses++;
     }
     resetCards();
     checkIfGameOver();
@@ -103,6 +106,7 @@ let firstCard = "";
 let secondCard = "";
 let deck;
 let cardsFlipped;
+let correctGuesses;
 let time;
 let timeout;
 prepareTheGame();
