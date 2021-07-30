@@ -42,7 +42,7 @@ function prepareTheGame(){
     correctGuesses = 0;
     cardsFlipped = 0;
     time = 0;
-    timeout = setInterval(clock, 1000);
+    timeoutID = setInterval(clock, 1000);
 }
 function compareCards(){
     if(firstCard.innerHTML === secondCard.innerHTML){
@@ -70,7 +70,7 @@ function gameOver(){
 function checkIfGameOver(){
     const allCards = document.querySelectorAll(".card");
     if((allCards.length / 2 ) === correctGuesses){
-        clearTimeout(timeout);
+        clearInterval(timeoutID);
         setTimeout(gameOver, 1000);
     }
 }
@@ -108,5 +108,5 @@ let deck;
 let cardsFlipped;
 let correctGuesses;
 let time;
-let timeout;
+let timeoutID;
 prepareTheGame();
