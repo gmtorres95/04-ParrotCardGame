@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 body {
     background-color: #EEF9BF;
     display: flex;
@@ -6,6 +6,7 @@ body {
 }
 .time {
     font-family: roboto;
+    font-weight: 700;
     font-size: 24px;
     color: #75B79E;
     display: flex;
@@ -19,6 +20,7 @@ body {
 }
 .title {
     font-family: roboto;
+    font-weight: 700;
     font-size: 56px;
     text-align: center;
     margin: 8px auto 40px;
@@ -67,4 +69,59 @@ body {
 }
 .selected .cover {
     transform: rotateY(-180deg);
+}
+.game-over {
+    position: fixed;
+    top: 170px;
+    left: calc((100% - 240px) / 2);
+    width: 240px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    padding: 16px 0px;
+    opacity: 0.9;
+}
+.game-over-top {
+    font-family: roboto;
+    font-weight: 700;
+    font-size: 28px;
+    color: #444444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px auto 16px;
+}
+th {
+    font-family: roboto;
+    font-size: 18px;
+    font-weight: 700;
+    color: #444444;
+    padding: 6px;
+}
+td{
+    font-family: roboto;
+    font-weight: 400;
+    font-size: 15px;
+    color: #444444;
+    text-align: center;
+}
+@media (max-width: 240px) {
+    .game-over {
+        width: 100%;
+        left: 0;
+        border-radius: 0;
+    }
+    table {
+        display: flex;
+        justify-content: center;
+    }
+    th {
+        font-size: 14px;
+    }
+    td {
+        font-size: 12px;
+    }
+}
+.hidden {
+    display: none;
 }
