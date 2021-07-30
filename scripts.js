@@ -1,11 +1,11 @@
 function selectNumberOfCards(){
     let numberOfCards = 0;
     while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0){
-        numberOfCards = Number(prompt("Selecione o nº de cartas (4-14)"));
+        numberOfCards = Number(prompt("Selecione um nº par de cartas (4 - 14)"));
     }
     return numberOfCards;
 }
-function prepareDeck(numberOfCards){
+function prepareDeck(){
     deck = [];
     for(i = 0; i < numberOfCards; i++){
         deck.push(`
@@ -35,8 +35,9 @@ function clock(){
     document.querySelector(".time").innerHTML = "TEMPO: " + time;
 }
 function prepareTheGame(){
-    const numberOfCards = selectNumberOfCards();
-    prepareDeck(numberOfCards);
+    playerName = prompt("Qual é o seu nome? (Máximo de 7 caracteres)");
+    numberOfCards = selectNumberOfCards();
+    prepareDeck();
     deck.sort(shuffle);
     cardsDistribution();
     correctGuesses = 0;
@@ -55,6 +56,7 @@ function resetCards(){
     secondCard = "";
 }
 function checkIfPlayAgain(){
+    document.querySelector(".game-over").classList.add("hidden");
     let wantToPlayAgain;
     while (wantToPlayAgain !== "sim" && wantToPlayAgain !== "não"){
         wantToPlayAgain = prompt("Deseja jogar novamente (sim/não)?");
@@ -63,9 +65,44 @@ function checkIfPlayAgain(){
         prepareTheGame();
     }
 }
+function calculateScore(){
+    return (5 * numberOfCards - time);
+}
+function sortHighScore(a, b) {
+    if (Number(a[0]) < Number(b[0])) {
+      return 1;
+    }
+    if (Number(a[0]) > Number(b[0])) {
+      return -1;
+    }
+    return 0;
+}
+function updateHighScore(){
+    let text = `<tr>
+                    <th>Pts</th>
+                    <th>Nome</th>
+                    <th>Cartas</th>
+                    <th>Tempo</th>
+                </tr>`;
+    for(i = 0; i < highScore.length && i < 10; i++){
+        text += `<tr>
+                    <td>${highScore[i][0]}</td>
+                    <td>${highScore[i][1]}</td>
+                    <td>${highScore[i][2]}</td>
+                    <td>${highScore[i][3]}</td>
+                </tr>`;
+    }
+    document.querySelector("table").innerHTML = text;
+}
+function saveHighScore(){
+    highScore.push([calculateScore(), playerName.substring(0,7), numberOfCards, time]);
+    highScore.sort(sortHighScore);
+    updateHighScore();
+}
 function gameOver(){
     alert(`Você ganhou em ${cardsFlipped} jogadas (${time} segundos)!`);
-    checkIfPlayAgain();
+    saveHighScore();
+    document.querySelector(".game-over").classList.remove("hidden");
 }
 function checkIfGameOver(){
     const allCards = document.querySelectorAll(".card");
@@ -105,8 +142,11 @@ function selectCard(selectedCard){
 let firstCard = "";
 let secondCard = "";
 let deck;
+let numberOfCards;
+let playerName;
 let cardsFlipped;
 let correctGuesses;
 let time;
 let timeoutID;
+let highScore = [];
 prepareTheGame();

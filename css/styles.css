@@ -75,11 +75,10 @@ body {
     top: 170px;
     left: calc((100% - 240px) / 2);
     width: 240px;
-    background-color: #A7E9AF;
-    border: 1px solid #99CEA8;
+    background-color: #99CEA8;
+    border: 1px solid #7fa88a;
     border-radius: 5px;
     padding: 16px 0px;
-    opacity: 0.9;
 }
 .game-over-top {
     font-family: roboto;
@@ -90,6 +89,19 @@ body {
     align-items: center;
     justify-content: center;
     margin: 4px auto 16px;
+}
+.close {
+    font-family: roboto;
+    font-weight: 700;
+    font-size: 24px;
+    background-color: #555555;
+    color: #A7E9AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 40px 0px;
+    border-radius: 5px;
+    border: 2px solid #333333;
 }
 th {
     font-family: roboto;
