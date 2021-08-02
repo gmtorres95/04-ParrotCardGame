@@ -147,12 +147,12 @@ function saveScore(){
 function gameOver(){
     alert(`Você ganhou em ${cardsFlipped} jogadas (${time} segundos)!`);
     saveScore();
-    document.querySelector(".game-over").classList.remove("hidden");
+    document.querySelector(".high-score").classList.remove("hidden");
 }
 
 //This function will check if the player wants to play again and restarts the game
 function checkIfPlayAgain(){
-    document.querySelector(".game-over").classList.add("hidden");
+    document.querySelector(".high-score").classList.add("hidden");
     let playerAnswer;
     while (playerAnswer !== "sim" && playerAnswer !== "não"){
         playerAnswer = prompt("Deseja jogar novamente (sim/não)?");

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Page layout */
 body {
     background-color: #EEF9BF;
     display: flex;
@@ -12,8 +14,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 8px auto;
-    padding: 4px 8px;
+    position: fixed;
+    top: 4px;
+    right: 8px;
+    z-index: 1;
+    padding: 4px;
     border-radius: 5px;
     border: 1px solid #99CEA8;
     background-color: #A7E9AF;
@@ -23,10 +28,14 @@ body {
     font-weight: 700;
     font-size: 56px;
     text-align: center;
-    margin: 8px auto 40px;
+    margin: 40px auto;
     color: #75B79E;
 }
 @media (max-width: 540px) {
+    .time {
+        font-size: 16px;
+        top: 8px;
+    }
     .title {
         font-size: 36px;
     }
@@ -37,6 +46,8 @@ body {
     justify-content: center;
     padding: 8px 20px;
 }
+
+/* Cards layout */
 .card {
     height: 146px;
     width: 117px;
@@ -61,6 +72,8 @@ body {
     height: 100px;
     width: 100px;
 }
+
+/* Flip animation */
 .front {
     transform: rotateY(180deg);
 }
@@ -70,7 +83,9 @@ body {
 .selected .cover {
     transform: rotateY(-180deg);
 }
-.game-over {
+
+/* High Score layout */
+.high-score {
     position: fixed;
     top: 170px;
     left: calc((100% - 240px) / 2);
@@ -80,7 +95,7 @@ body {
     border-radius: 5px;
     padding: 16px 0px;
 }
-.game-over-top {
+.high-score-top {
     font-family: roboto;
     font-weight: 700;
     font-size: 28px;
@@ -116,23 +131,6 @@ td{
     font-size: 15px;
     color: #444444;
     text-align: center;
-}
-@media (max-width: 240px) {
-    .game-over {
-        width: 100%;
-        left: 0;
-        border-radius: 0;
-    }
-    table {
-        display: flex;
-        justify-content: center;
-    }
-    th {
-        font-size: 14px;
-    }
-    td {
-        font-size: 12px;
-    }
 }
 .hidden {
     display: none;
