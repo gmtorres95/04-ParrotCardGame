@@ -1,4 +1,4 @@
-//These functions will prepare the game for the player, starting at "prepareTheGame()"
+//These functions prepares the game for the player, starting at "prepareTheGame()"
 function resetGame(){
     playerName = "";
     numberOfCards = 0;
@@ -102,7 +102,7 @@ function selectCard(selectedCard){
     }
 }
 
-//These functions will end the game, starting at "gameOver()", and will update de HighScore board
+//These functions end the game, starting at "gameOver()", and updates the HighScore board
 function calculateScore(){
     return (5 * numberOfCards - time);
 }
@@ -150,7 +150,7 @@ function gameOver(){
     document.querySelector(".high-score").classList.remove("hidden");
 }
 
-//This function will check if the player wants to play again and restarts the game
+//This function checks if the player wants to play again. If so, the game will restart
 function checkIfPlayAgain(){
     document.querySelector(".high-score").classList.add("hidden");
     let playerAnswer;
